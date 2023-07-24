@@ -11,6 +11,29 @@ It runs as an application under different operating systems and allows you to co
 
 Various types of aircraft are supported by the tool and by Betaflight, e.g. quadcopters, hexacopters, octocopters and fixed-wing aircraft.
 
+## How to run on Ubuntu 22.04
+
+Install the `yarn` package manager via the `npm` package manager, which is in turn installed via the `apt` package manager (...). Also install the correct version of `node` (v16):
+```bash
+sudo apt install libatomic1 npm
+sudo npm install -g gulp-cli yarn
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+source ~/.bashrc
+```
+
+Clone repo, install dependencies and then compile:
+```bash
+git clone git@github.com/tblaha/betaflight-configurator
+cd betaflight-configurator
+git checkout 10.10-pi
+yarn install # this installs the dependency node modules
+yarn gulp debug # the builds the application using the debug profile and downloads the NWjs
+```
+
+In the future, you can run with either `yarn gulp debug` or with `./debug/betaflight-configurator/linux64/betaflight-configurator`.
+
+
+
 ## Authors
 
 Betaflight Configurator is a [fork](#credits) of the Cleanflight Configurator with support for Betaflight instead of Cleanflight.
