@@ -50,6 +50,7 @@ function MspHelper() {
     'LIDAR_TF': 15,
     'FRSKY_OSD': 16,
     'VTX_MSP': 17,
+    'TELEMETRY_PI': 18,
     };
 
     self.REBOOT_TYPES = {
