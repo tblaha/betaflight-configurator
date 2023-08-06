@@ -11,7 +11,7 @@ It runs as an application under different operating systems and allows you to co
 
 Various types of aircraft are supported by the tool and by Betaflight, e.g. quadcopters, hexacopters, octocopters and fixed-wing aircraft.
 
-## How to run on Ubuntu 22.04
+## tblaha: How to run on Ubuntu 22.04
 
 Install the `yarn` package manager via the `npm` package manager, which is in turn installed via the `apt` package manager (...). Also install the correct version of `node` (v16):
 ```bash

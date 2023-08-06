@@ -77,6 +77,16 @@ ports.initialize = function (callback) {
         '38400',
         '57600',
         '115200',
+        '230400', // tblaha: adding more baud rates for speeeeed
+        '250000',
+        '400000',
+        '460800',
+        '500000',
+        '921600',
+        '1000000',
+        '1500000',
+        '2000000',
+        '2470000',
     ];
 
     const blackboxBaudRates = [
