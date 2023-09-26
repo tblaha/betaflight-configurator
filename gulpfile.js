@@ -48,7 +48,7 @@ const NAME_REGEX = /-/g;
 const nwBuilderOptions = {
     version: '0.77.0',
     files: `${DIST_DIR}**/*`,
-    macIcns: './src/images/bf_icon.icns',
+    macIcns: './src/images/if_icon.icns',
     macPlist: { 'CFBundleDisplayName': 'Indiflight Configurator'},
     winIco: './src/images/if_icon.ico',
     zip: false,
