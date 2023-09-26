@@ -11,7 +11,7 @@ function notifyOutdatedVersion(data) {
         return false;
     }
 
-    if (data.isCurrent === false && data.updatedVersion !== undefined) {
+    if (false && data.isCurrent === false && data.updatedVersion !== undefined) {
 
         CONFIGURATOR.latestVersion = data.updatedVersion.version;
         CONFIGURATOR.latestVersionReleaseUrl = data.updatedVersion.url;
