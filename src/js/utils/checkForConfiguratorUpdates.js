@@ -11,8 +11,7 @@ function notifyOutdatedVersion(data) {
         return false;
     }
 
-    if (false && data.isCurrent === false && data.updatedVersion !== undefined) {
-        // I couldn't figure this bug out...
+    if (data.isCurrent === false && data.updatedVersion !== undefined) {
 
         CONFIGURATOR.latestVersion = data.updatedVersion.version;
         CONFIGURATOR.latestVersionReleaseUrl = data.updatedVersion.url;
