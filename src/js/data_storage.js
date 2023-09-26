@@ -20,7 +20,7 @@ const CONFIGURATOR = {
     virtualApiVersion: '0.0.1',
     cliActive: false,
     cliValid: false,
-    productName: 'Betaflight Configurator',
+    productName: 'Indiflight Configurator',
     cliEngineActive: false,
     cliEngineValid: false,
     gitChangesetId: 'unknown',

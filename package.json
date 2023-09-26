@@ -1,6 +1,6 @@
 {
   "name": "betaflight-configurator",
-  "productName": "Betaflight Configurator",
+  "productName": "Indiflight Configurator",
   "description": "Crossplatform configuration tool for Betaflight flight control system.",
   "version": "10.10.0",
   "main": "main.html",
@@ -20,15 +20,15 @@
     "storybook": "start-storybook -p 6006"
   },
   "window": {
-    "icon": "images/bf_icon_128.png",
+    "icon": "images/if_icon_128.png",
     "id": "main-window",
     "min_width": 1024,
     "min_height": 550,
-    "title": "Betaflight Configurator"
+    "title": "Indiflight Configurator"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/betaflight/betaflight-configurator"
+    "url": "github.com/tblaha/betaflight-configurator"
   },
   "webview": {
     "partitions": [

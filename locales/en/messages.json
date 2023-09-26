@@ -683,7 +683,7 @@
     },
 
     "defaultWelcomeIntro": {
-        "message": "Welcome to <strong>Betaflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
+        "message": "Welcome to <strong>Indiflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
     },
 
     "defaultWelcomeHead": {
@@ -2437,6 +2437,10 @@
     "auxiliaryHelpMode_READY": {
         "message": "Added in BF4.4, you can now show 'READY' in the OSD using a switch. This is a niche improvement for racing situations where all pilot video feeds are on one central screen. The pilot can flick a switch to indicate that they are ready to fly, and the word READY appears on their OSD. The race director can then tell if all pilots are ready by looking at the central screen. On arming, the READY text disappears",
         "description": "Help text to READY mode"
+    },
+    "auxiliaryHelpMode_POSITIONCONTROL": {
+        "message": "Experimental position controller with external position system optitrack",
+        "description": "Help text to POSITION CONTROL mode"
     },
     "adjustmentsHelp": {
         "message": "Configure adjustment switches. See the 'in-flight adjustments' section of the manual for details. The changes that adjustment functions make are not saved automatically."

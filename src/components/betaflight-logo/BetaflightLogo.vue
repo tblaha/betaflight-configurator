@@ -42,7 +42,7 @@ export default {
 .logo {
   height: 70px;
   width: 240px;
-  background-image: url(../../images/light-wide-2.svg);
+  background-image: url(../../images/if_logo_light.svg);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: contain;
@@ -53,7 +53,7 @@ export default {
 .logo_text {
   position: absolute;
   left: 80px;
-  top: 49px;
+  top: 62px;
   color: #949494;
   opacity: 0.5;
   font-size: 10px;
@@ -70,7 +70,7 @@ export default {
   .logo {
     height: 24px;
     width: 150px;
-    background-image: url(../../images/light-wide-2-compact.svg);
+    background-image: url(../../images/if_logo_light_noLogo.svg);
     background-position: left center;
     order: 2;
     margin-top: 0;
@@ -80,7 +80,7 @@ export default {
   }
   .tab_container .logo {
     display: block;
-    background-image: url(../../images/light-wide-2.svg);
+    background-image: url(../../images/if_logo_light.svg);
     background-repeat: no-repeat;
     background-position: center 20px;
     background-position-x: 12px;
