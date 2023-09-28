@@ -40,20 +40,20 @@ export default {
 
 <style>
 .logo {
-  height: 70px;
+  height: 60px;
   width: 240px;
   background-image: url(../../images/if_logo_light.svg);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: contain;
   position: relative;
-  margin-top: -25px;
+  margin-top: -35px;
 }
 
 .logo_text {
   position: absolute;
   left: 80px;
-  top: 62px;
+  top: 55px;
   color: #949494;
   opacity: 0.5;
   font-size: 10px;

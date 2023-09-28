@@ -398,6 +398,11 @@ function startProcess() {
                             pid_tuning.initialize(content_ready),
                         );
                         break;
+                    case 'indi':
+                        import("./tabs/indi").then(({ indi }) =>
+                            indi.initialize(content_ready),
+                        );
+                        break;
                     case 'receiver':
                         import("./tabs/receiver").then(({ receiver }) =>
                             receiver.initialize(content_ready),

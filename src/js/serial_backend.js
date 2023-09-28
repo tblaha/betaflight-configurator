@@ -307,7 +307,7 @@ function onOpen(openInfo) {
             if (semver.gte(FC.CONFIG.apiVersion, CONFIGURATOR.API_VERSION_ACCEPTED)) {
                 MSP.send_message(MSPCodes.MSP_FC_VARIANT, false, false, function () {
                     tracking.setFlightControllerData(tracking.DATA.FIRMWARE_TYPE, FC.CONFIG.flightControllerIdentifier);
-                    if (FC.CONFIG.flightControllerIdentifier === 'BTFL') {
+                    if (FC.CONFIG.flightControllerIdentifier === 'BTFL' || FC.CONFIG.flightControllerIdentifier === 'INFL') {
                         MSP.send_message(MSPCodes.MSP_FC_VERSION, false, false, function () {
                             tracking.setFlightControllerData(tracking.DATA.FIRMWARE_VERSION, FC.CONFIG.flightControllerVersion);
 
