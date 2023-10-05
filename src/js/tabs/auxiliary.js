@@ -61,6 +61,7 @@ auxiliary.initialize = function (callback) {
         $(newMode).find('.name').text(modeNameAjusted);
 
         // add help to mode
+        //console.log(`${modeIndex}, ${modeId}, ${modeNameCamel}`);
         $(newMode).find('.helpicon').attr('i18n_title', `auxiliaryHelpMode_${modeNameCamel}`);
 
         $(newMode).data('index', modeIndex);

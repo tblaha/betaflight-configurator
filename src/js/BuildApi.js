@@ -127,28 +127,31 @@ export default class BuildApi {
         });
     }
 
+    // todo: fix this properly for the cases that there is no internet connection
     requestBuildStatus(key, onSuccess, onFailure) {
         const url = `${this._url}/api/builds/${key}/status`;
-        $.get(url, function (data) {
-            gui_log(i18n.getMessage('buildServerSuccess', [url]));
-            onSuccess(data);
-        }).fail(xhr => {
-            gui_log(i18n.getMessage('buildServerFailure', [url, `HTTP ${xhr.status}`]));
-            if (onFailure !== undefined) {
-                onFailure();
-            }
-        });
+        //$.get(url, function (data) {
+        //    gui_log(i18n.getMessage('buildServerSuccess', [url]));
+        //    onSuccess(data);
+        //}).fail(xhr => {
+        //    gui_log(i18n.getMessage('buildServerFailure', [url, `HTTP ${xhr.status}`]));
+        //    if (onFailure !== undefined) {
+        //        onFailure();
+        //    }
+        //});
+        onFailure();
     }
 
     requestBuildOptions(key, onSuccess, onFailure) {
         const url = `${this._url}/api/builds/${key}/json`;
-        $.get(url, function (data) {
-            onSuccess(data);
-        }).fail(xhr => {
-            if (onFailure !== undefined) {
-                onFailure();
-            }
-        });
+        //$.get(url, function (data) {
+        //    onSuccess(data);
+        //}).fail(xhr => {
+        //    if (onFailure !== undefined) {
+        //        onFailure();
+        //    }
+        //});
+        onFailure();
     }
 
     loadOptions(release, onSuccess, onFailure) {
