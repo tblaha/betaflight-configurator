@@ -2,7 +2,7 @@
   "name": "betaflight-configurator",
   "productName": "Indiflight Configurator",
   "description": "Crossplatform configuration tool for Betaflight flight control system.",
-  "version": "10.10.0-indi",
+  "version": "10.10.1-indi",
   "main": "main.html",
   "chromium-args": "--disable-features=nw2",
   "scripts": {
