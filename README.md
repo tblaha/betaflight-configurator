@@ -1,6 +1,8 @@
-# Betaflight Configurator
+# Indiflight Configurator
 
-![Betaflight](http://static.rcgroups.net/forums/attachments/6/1/0/3/7/6/a9088900-228-bf_logo.jpg)
+![Indiflight](docs/assets/images/IndiflightLogoFull.png)
+
+This is a direct fork of the betaflight-configurator, with adaptations to support the Indiflight fork of Betaflight.
 
 [![Latest version](https://img.shields.io/github/v/release/betaflight/betaflight-configurator)](https://github.com/betaflight/betaflight-configurator/releases) [![Build](https://img.shields.io/github/actions/workflow/status/betaflight/betaflight-configurator/nightly.yml?branch=master)](https://github.com/betaflight/betaflight-configurator/actions/workflows/nightly.yml) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/betaflight-configurator/localized.svg)](https://crowdin.com/project/betaflight-configurator) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=betaflight_betaflight-configurator&metric=alert_status)](https://sonarcloud.io/dashboard?id=betaflight_betaflight-configurator) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -10,6 +12,30 @@ Betaflight Configurator is a crossplatform configuration tool for the Betaflight
 It runs as an application under different operating systems and allows you to configure the Betaflight software running on any supported Betaflight target. [Downloads are available in Releases.](https://github.com/betaflight/betaflight-configurator/releases)
 
 Various types of aircraft are supported by the tool and by Betaflight, e.g. quadcopters, hexacopters, octocopters and fixed-wing aircraft.
+
+## tblaha: How to run on Ubuntu 22.04
+
+Install the `yarn` package manager via the `npm` package manager, which is in turn installed via the `apt` package manager (...). Also install the correct version of `node` (v16):
+```bash
+sudo apt install libatomic1 npm
+sudo npm install -g gulp-cli yarn
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+source ~/.bashrc
+nvm install 16
+```
+
+Clone repo, install dependencies and then compile:
+```bash
+git clone git@github.com/tblaha/betaflight-configurator
+cd betaflight-configurator
+git checkout 10.10-pi
+yarn install # this installs the dependency node modules
+yarn gulp debug # the builds the application using the debug profile and downloads the NWjs
+```
+
+In the future, you can run with either `yarn gulp debug` or with `./debug/betaflight-configurator/linux64/betaflight-configurator`.
+
+
 
 ## Authors
 

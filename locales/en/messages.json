@@ -314,6 +314,9 @@
     "tabPidTuning": {
         "message": "PID Tuning"
     },
+    "tabIndi": {
+        "message": "INDI"
+    },
     "tabReceiver": {
         "message": "Receiver"
     },
@@ -683,7 +686,7 @@
     },
 
     "defaultWelcomeIntro": {
-        "message": "Welcome to <strong>Betaflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
+        "message": "Welcome to <strong>Indiflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
     },
 
     "defaultWelcomeHead": {
@@ -1625,6 +1628,9 @@
     "portsFunction_TELEMETRY_MAVLINK": {
         "message": "MAVLink"
     },
+    "portsFunction_TELEMETRY_PI": {
+        "message": "PI"
+    },
     "portsFunction_TELEMETRY_MSP": {
         "message": "MSP"
     },
@@ -2158,6 +2164,9 @@
     "pidTuningSliderModeHelp": {
         "message": "<strong>Pid Tuning Slider Mode</strong><br><br>Pidtuning slider mode can be:<br><br>&bull; OFF - no sliders, enter values manually<br>&bull; RP - sliders control Roll and Pitch only, enter Yaw values manually<br>&bull; RPY - sliders control all PID values<br><br><span class=\"message-negative\"><b>Warning:</b></span>Going from RP to RPY mode will overwrite Yaw settings with firmware settings."
     },
+    "indiButtonSave": {
+        "message": "Save and Reboot"
+    },
     "receiverHelp": {
         "message": "&#8226;  <b><strong><a href=\"https://betaflight.com/docs/development/Failsafe#testing-failsafe\" target=\"_blank\" rel=\"noopener noreferrer\">Always check that your Failsafe is working properly!</a></strong></b> The settings are in the Failsafe tab, which requires Expert Mode.<br> &#8226; <b>Use the latest Tx firmware!</b><br> &#8226; <strong><a href=\"https://betaflight.com/docs/development/Rx#disabling-the-opentxedgetx-adc-filter\" target=\"_blank\" rel=\"noopener noreferrer\">Disable the hardware ADC filter</a></strong> in the Transmitter if using OpenTx or EdgeTx.<br>Basic Setup: Configure the 'Receiver' settings correctly. Choose the correct ‘Channel Map’ for your radio. Check that the Roll, Pitch and other bar graphs move correctly. Adjust the channel endpoint or range values in the transmitter to ~1000 to ~2000, and set the midpoint to 1500. For more information, read the <strong><a href=\"https://betaflight.com/docs/development/Rx\" target=\"_blank\" rel=\"noopener noreferrer\">documentation</a></strong>."
     },
@@ -2434,6 +2443,14 @@
     "auxiliaryHelpMode_READY": {
         "message": "Added in BF4.4, you can now show 'READY' in the OSD using a switch. This is a niche improvement for racing situations where all pilot video feeds are on one central screen. The pilot can flick a switch to indicate that they are ready to fly, and the word READY appears on their OSD. The race director can then tell if all pilots are ready by looking at the central screen. On arming, the READY text disappears",
         "description": "Help text to READY mode"
+    },
+    "auxiliaryHelpMode_POSITIONCONTROL": {
+        "message": "Experimental position controller with external position system optitrack",
+        "description": "Help text to POSITION CONTROL mode"
+    },
+    "auxiliaryHelpMode_VELOCITYCONTROL": {
+        "message": "Experimental velocity controller with external position system optitrack and sticks as setpoints",
+        "description": "Help text to VELOCITY CONTROL mode"
     },
     "adjustmentsHelp": {
         "message": "Configure adjustment switches. See the 'in-flight adjustments' section of the manual for details. The changes that adjustment functions make are not saved automatically."

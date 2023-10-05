@@ -1,0 +1,442 @@
+<div class="tab-indi toolbar_fixed_bottom">
+    <div class="content_wrapper">
+        <div class="tab_title" i18n="tabIndi"></div>
+        <div class="cf_doc_version_bt">
+            <a id="button-documentation" href="" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+        <div class="note">
+            <p><strong>Note: </strong>This controller is <span class="message-negative">highly experimental</span>. It can and will cause flyaways and probably hurt you and others.</p>
+        </div>
+
+        <div class="grid-row">
+
+            <div class="grid-col col6">
+
+                <!-- SYSTEM CONFIGURATION -->
+                <div class="indiDesired">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
+                            <div class="spacer_box_title">PD Characteristics</div>
+                        </div>
+                        <div class="spacer_box">
+                            <!--
+                            <div class="note">
+                                <p class="systemconfigNote" i18n="configurationLoopTimeHelp"></p>
+                            </div>
+                            -->
+                            <div class="number">
+                                <input type="number" class="indiProll"/>
+                                <span>Attitude gain roll (P)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiPpitch"/>
+                                <span>Attitude gain pitch (P)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiPyaw"/>
+                                <span>Attitude gain yaw (P)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiDroll"/>
+                                <span>Rate gain roll (D)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiDpitch"/>
+                                <span>Rate gain pitch (D)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiDyaw"/>
+                                <span>Rate gain yaw (D)</span>
+                            </div>
+                        </div>
+                        <!--
+                            <div class="select">
+                                <input type="text" class="gyroFrequency" readonly />
+                                <select class="gyroSyncDenom">
+                                </select>
+                                <span i18n="configurationGyroSyncDenom"></span>
+                            </div>
+                            <div class="select">
+                                <select class="pidProcessDenom">
+                                </select>
+                                <span i18n="configurationPidProcessDenom"></span>
+                                <div class="helpicon cf_tip" i18n_title="configurationPidProcessDenomHelp"></div>
+                            </div>
+                            <div class="hardwareSelection">
+                                <div class="select">
+                                    <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                        <input type="checkbox" id="accHardwareSwitch" class="toggle" />
+                                    </div>
+                                    <span class="freelabel" i18n="configurationAccHardware"></span>
+                                </div>
+                                <div class="select">
+                                    <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                        <input type="checkbox" id="baroHardwareSwitch" class="toggle" />
+                                    </div>
+                                    <span class="freelabel" i18n="configurationBaroHardware"></span>
+                                </div>
+                                <div class="select">
+                                    <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                        <input type="checkbox" id="magHardwareSwitch" class="toggle" />
+                                    </div>
+                                    <span class="freelabel" i18n="configurationMagHardware"></span>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+                <!-- END SYSTEM CONFIGURATION-->
+
+                <div class="indiFeedback">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
+                            <div class="spacer_box_title">Feedback Usage</div>
+                        </div>
+                        <div class="spacer_box">
+                            <div class="select">
+                                <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                    <input type="checkbox" id="indiRpmInINDI" class="toggle" />
+                                </div>
+                                <span class="freelabel">Use RPM in INDI (requires bidir DSHOT, only DSHOT600 tested)</span>
+                            </div>
+                            <div class="select">
+                                <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                    <input type="checkbox" id="indiRpmInYawScaling" class="toggle" />
+                                </div>
+                                <span class="freelabel">Use RPM in Yaw Scaling (requires bidir DSHOT, only DSHOT600 tested)</span>
+                            </div>
+                            <div class="select">
+                                <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                    <input type="checkbox" id="indiRpmDInYawScaling" class="toggle" />
+                                </div>
+                                <span class="freelabel">Use RPM derivative in Yaw Scaling (requires bidir DSHOT, only DSHOT600 tested)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="indiWls">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
+                            <div class="spacer_box_title">WLS mixer</div>
+                        </div>
+                        <div class="spacer_box">
+                            <div class="select">
+                                <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                    <input type="checkbox" id="indiUseWls" class="toggle" disabled/>
+                                </div>
+                                <span class="freelabel">Use WLS (WLS off fallback not yet implemented)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsWv0" disabled/>
+                                <span>Surge weight</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsWv1" disabled/>
+                                <span>Sway weight</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsWv2"/>
+                                <span>Hieve weight</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsWv3"/>
+                                <span>Roll weight</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsWv4"/>
+                                <span>Pitch weight</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsWv5"/>
+                                <span>Yaw weight</span>
+                            </div>
+                            <div class="number">
+                                <select class="indiWlsAlgo">
+                                </select>
+                                <span>WLS solver Algorithm</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsCondBound"/>
+                                <span>Solver Condition Number limit</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsDelta"/>
+                                <span>Solver Objective Separation</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiWlsMaxIter"/>
+                                <span>Solver Maximum Iterations (only tested 1 for now)</span>
+                            </div>
+                            <div class="select">
+                                <div style="float: left; height: 20px; margin-right: 15px; margin-left: 3px;">
+                                    <input type="checkbox" id="indiWlsWarmstart" class="toggle" disabled/>
+                                </div>
+                                <span>Solver Use Warmstart (only tested On for now)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- END grid-col col6 -->
+
+            <div class="grid-col col6">
+                <div class="indiEffectiveness">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
+                            <div class="spacer_box_title">G1/G2 Calculator</div>
+                        </div>
+                        <div class="spacer_box">
+                            <div class="number">
+                                <input type="text" class="indiActTau"/>
+                                <span>Actuator Time Constant tau in ms</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiPropk"/>
+                                <span>1'000'000 * Propeller constant in T = k * \omega^2 (N per rad/s)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiPropCm"/>
+                                <span>Propeller Moment Coefficient CM (Nm per N thrust)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiTmax"/>
+                                <span>Max thrust per motor (N)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiL"/>
+                                <span>Length (mm)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiW"/>
+                                <span>Width (mm)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiM"/>
+                                <span>Mass (g)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiIxx"/>
+                                <span>Ixx (gcm^2)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiIyy"/>
+                                <span>Iyy (gcm^2)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiIzz"/>
+                                <span>Izz (gcm^2)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiIprop"/>
+                                <span>Iprop (gcm^2)</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiMotorType"/>
+                                <span>4 digit (outrunner) motor type</span>
+                            </div>
+                            <div class="number">
+                                <input type="text" class="indiPropAlpha"/>
+                                <span>100 * ESC nonlinearity (DSHOT command to Thrust). See <a href="https://www.desmos.com/calculator/xltfor4qnv">here</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="indiEffectiveness">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
+                            <div class="spacer_box_title">G1 G2 Matrices</div>
+                        </div>
+                        <div>
+                            <span>G1</span>
+                            <table id="indiG1" class="indi">
+                                <tbody>
+                                    <tr class="indi_titlebar">
+                                        <th></th>
+                                        <th>Motor 1</th>
+                                        <th>Motor 2</th>
+                                        <th>Motor 3</th>
+                                        <th>Motor 4</th>
+                                    </tr>
+                                    <tr class="indiG1Fx">
+                                        <td>Surge</td>
+                                        <td><input type="number" name="G1_0_0"/></td>
+                                        <td><input type="number" name="G1_0_1"/></td>
+                                        <td><input type="number" name="G1_0_2"/></td>
+                                        <td><input type="number" name="G1_0_3"/></td>
+                                    </tr>
+                                    <tr class="indiG1Fy">
+                                        <td>Sway</td>
+                                        <td><input type="number" name="G1_1_0"/></td>
+                                        <td><input type="number" name="G1_1_1"/></td>
+                                        <td><input type="number" name="G1_1_2"/></td>
+                                        <td><input type="number" name="G1_1_3"/></td>
+                                    </tr>
+                                    <tr class="indiG1Fz">
+                                        <td>Hieve</td>
+                                        <td><input type="number" name="G1_2_0"/></td>
+                                        <td><input type="number" name="G1_2_1"/></td>
+                                        <td><input type="number" name="G1_2_2"/></td>
+                                        <td><input type="number" name="G1_2_3"/></td>
+                                    </tr>
+                                    <tr class="indiG1Mx">
+                                        <td>Roll</td>
+                                        <td><input type="number" name="G1_3_0"/></td>
+                                        <td><input type="number" name="G1_3_1"/></td>
+                                        <td><input type="number" name="G1_3_2"/></td>
+                                        <td><input type="number" name="G1_3_3"/></td>
+                                    </tr>
+                                    <tr class="indiG1My">
+                                        <td>Pitch</td>
+                                        <td><input type="number" name="G1_4_0"/></td>
+                                        <td><input type="number" name="G1_4_1"/></td>
+                                        <td><input type="number" name="G1_4_2"/></td>
+                                        <td><input type="number" name="G1_4_3"/></td>
+                                    </tr>
+                                    <tr class="indiG1Mz">
+                                        <td>Yaw</td>
+                                        <td><input type="number" name="G1_5_0"/></td>
+                                        <td><input type="number" name="G1_5_1"/></td>
+                                        <td><input type="number" name="G1_5_2"/></td>
+                                        <td><input type="number" name="G1_5_3"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <span>G2</span>
+                            <table id="indiG2" class="indi">
+                                <tbody>
+                                    <tr class="indi_titlebar">
+                                        <th></th>
+                                        <th>Motor 1</th>
+                                        <th>Motor 2</th>
+                                        <th>Motor 3</th>
+                                        <th>Motor 4</th>
+                                    </tr>
+                                    <tr class="indiG2Fx">
+                                        <td>Surge</td>
+                                        <td><input type="number" name="G2_0_0"/></td>
+                                        <td><input type="number" name="G2_0_1"/></td>
+                                        <td><input type="number" name="G2_0_2"/></td>
+                                        <td><input type="number" name="G2_0_3"/></td>
+                                    </tr>
+                                    <tr class="indiG2Fy">
+                                        <td>Sway</td>
+                                        <td><input type="number" name="G2_1_0"/></td>
+                                        <td><input type="number" name="G2_1_1"/></td>
+                                        <td><input type="number" name="G2_1_2"/></td>
+                                        <td><input type="number" name="G2_1_3"/></td>
+                                    </tr>
+                                    <tr class="indiG2Fz">
+                                        <td>Hieve</td>
+                                        <td><input type="number" name="G2_2_0"/></td>
+                                        <td><input type="number" name="G2_2_1"/></td>
+                                        <td><input type="number" name="G2_2_2"/></td>
+                                        <td><input type="number" name="G2_2_3"/></td>
+                                    </tr>
+                                    <tr class="indiG2Mx">
+                                        <td>Roll</td>
+                                        <td><input type="number" name="G2_3_0"/></td>
+                                        <td><input type="number" name="G2_3_1"/></td>
+                                        <td><input type="number" name="G2_3_2"/></td>
+                                        <td><input type="number" name="G2_3_3"/></td>
+                                    </tr>
+                                    <tr class="indiG2My">
+                                        <td>Pitch</td>
+                                        <td><input type="number" name="G2_4_0"/></td>
+                                        <td><input type="number" name="G2_4_1"/></td>
+                                        <td><input type="number" name="G2_4_2"/></td>
+                                        <td><input type="number" name="G2_4_3"/></td>
+                                    </tr>
+                                    <tr class="indiG2Mz">
+                                        <td>Yaw</td>
+                                        <td><input type="number" name="G2_5_0"/></td>
+                                        <td><input type="number" name="G2_5_1"/></td>
+                                        <td><input type="number" name="G2_5_2"/></td>
+                                        <td><input type="number" name="G2_5_3"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="number">
+                                <input type="text" class="indiG2Normalizer"/>
+                                <span>G2 Normalizer = 1 / (2 * tau * k) </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="indiEffectiveness">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
+                            <div class="spacer_box_title">WLS off: Pseudoinverse</div>
+                        </div>
+                        <div>
+                            <div class="number">
+                                <input type="text" class="idiW0"/>
+                                <span>Motor RPM at linearization point</span>
+                            </div>
+                            <span>pinv(G1 + G2 / w_0)</span>
+                            <table id="indiG1G2pinv" class="indi">
+                                <tbody>
+                                    <tr class="indi_titlebar">
+                                        <th></th>
+                                        <th>Surge</th>
+                                        <th>Sway</th>
+                                        <th>Hieve</th>
+                                        <th>Roll</th>
+                                        <th>Pitch</th>
+                                        <th>Yaw</th>
+                                    </tr>
+                                    <tr class="indiGpinv0">
+                                        <td>Motor 1</td>
+                                        <td><input type="number" name="Gpinv_0_0"/></td>
+                                        <td><input type="number" name="Gpinv_0_1"/></td>
+                                        <td><input type="number" name="Gpinv_0_2"/></td>
+                                        <td><input type="number" name="Gpinv_0_3"/></td>
+                                        <td><input type="number" name="Gpinv_0_4"/></td>
+                                        <td><input type="number" name="Gpinv_0_5"/></td>
+                                    </tr>
+                                    <tr class="indiGpinv1">
+                                        <td>Motor 1</td>
+                                        <td><input type="number" name="Gpinv_1_0"/></td>
+                                        <td><input type="number" name="Gpinv_1_1"/></td>
+                                        <td><input type="number" name="Gpinv_1_2"/></td>
+                                        <td><input type="number" name="Gpinv_1_3"/></td>
+                                        <td><input type="number" name="Gpinv_1_4"/></td>
+                                        <td><input type="number" name="Gpinv_1_5"/></td>
+                                    </tr>
+                                    <tr class="indiGpinv2">
+                                        <td>Motor 2</td>
+                                        <td><input type="number" name="Gpinv_2_0"/></td>
+                                        <td><input type="number" name="Gpinv_2_1"/></td>
+                                        <td><input type="number" name="Gpinv_2_2"/></td>
+                                        <td><input type="number" name="Gpinv_2_3"/></td>
+                                        <td><input type="number" name="Gpinv_2_4"/></td>
+                                        <td><input type="number" name="Gpinv_2_5"/></td>
+                                    </tr>
+                                    <tr class="indiGpinv3">
+                                        <td>Motor 3</td>
+                                        <td><input type="number" name="Gpinv_3_0"/></td>
+                                        <td><input type="number" name="Gpinv_3_1"/></td>
+                                        <td><input type="number" name="Gpinv_3_2"/></td>
+                                        <td><input type="number" name="Gpinv_3_3"/></td>
+                                        <td><input type="number" name="Gpinv_3_4"/></td>
+                                        <td><input type="number" name="Gpinv_3_5"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content_toolbar">
+            <div class="btn save_btn">
+                <a class="save" href="#" i18n="indiButtonSave"></a>
+            </div>
+        </div>
+
+    </div>
+</div>

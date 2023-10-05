@@ -28,6 +28,7 @@ ports.initialize = function (callback) {
         { name: 'BLACKBOX',             groups: ['peripherals'], sharableWith: ['msp'], notSharableWith: ['telemetry'], maxPorts: 1 },
         { name: 'TELEMETRY_LTM',        groups: ['telemetry'], sharableWith: ['msp'], notSharableWith: ['peripherals'], maxPorts: 1 },
         { name: 'TELEMETRY_MAVLINK',    groups: ['telemetry'], sharableWith: ['msp'], notSharableWith: ['peripherals'], maxPorts: 1 },
+        { name: 'TELEMETRY_PI',         groups: ['telemetry'], sharableWith: ['msp'], notSharableWith: ['peripherals'], maxPorts: 1 },
         { name: 'IRC_TRAMP',            groups: ['peripherals'], maxPorts: 1 },
         { name: 'ESC_SENSOR',           groups: ['sensors'], maxPorts: 1 },
         { name: 'TBS_SMARTAUDIO',       groups: ['peripherals'], maxPorts: 1 },
@@ -76,6 +77,16 @@ ports.initialize = function (callback) {
         '38400',
         '57600',
         '115200',
+        '230400', // tblaha: adding more baud rates for speeeeed
+        '250000',
+        '400000',
+        '460800',
+        '500000',
+        '921600',
+        '1000000',
+        '1500000',
+        '2000000',
+        '2470000',
     ];
 
     const blackboxBaudRates = [
