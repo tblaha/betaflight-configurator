@@ -1479,6 +1479,9 @@
     "beeperRC_SMOOTHING_INIT_FAIL": {
         "message": "Beep when armed and rc smoothing has not initialized filters"
     },
+    "beeperTHROW_TO_ARM": {
+        "message": "Beep when throw-to-arm is in READY state"
+    },
     "configuration3d": {
         "message": "3D ESC/Motor Features"
     },
@@ -2451,6 +2454,10 @@
     "auxiliaryHelpMode_VELOCITYCONTROL": {
         "message": "Experimental velocity controller with external position system optitrack and sticks as setpoints",
         "description": "Help text to VELOCITY CONTROL mode"
+    },
+    "auxiliaryHelpMode_THROWTOARM": {
+        "message": "Experimental position controller with external position system optitrack",
+        "description": "Help text to POSITION CONTROL mode"
     },
     "adjustmentsHelp": {
         "message": "Configure adjustment switches. See the 'in-flight adjustments' section of the manual for details. The changes that adjustment functions make are not saved automatically."

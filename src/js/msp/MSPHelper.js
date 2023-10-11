@@ -1686,6 +1686,7 @@ MspHelper.prototype.crunch = function(code, modifierCode = undefined) {
             const beeperDisabledMask = FC.BEEPER_CONFIG.beepers.getDisabledMask();
             buffer.push32(beeperDisabledMask);
             buffer.push8(FC.BEEPER_CONFIG.dshotBeaconTone);
+            console.log(`${FC.BEEPER_CONFIG.dshotBeaconConditions.getDisabledMask()}`);
             buffer.push32(FC.BEEPER_CONFIG.dshotBeaconConditions.getDisabledMask());
             break;
         case MSPCodes.MSP_SET_MIXER_CONFIG:
