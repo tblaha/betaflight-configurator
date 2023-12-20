@@ -369,6 +369,7 @@ onboard_logging.initialize = function (callback) {
                 { text: "GPS" },
                 { text: "INDI" },
                 { text: "Position"},
+                { text: "EKF"},
             ];
 
             let fieldsMask = FC.BLACKBOX.blackboxDisabledMask;
