@@ -29,6 +29,7 @@ ports.initialize = function (callback) {
         { name: 'TELEMETRY_LTM',        groups: ['telemetry'], sharableWith: ['msp'], notSharableWith: ['peripherals'], maxPorts: 1 },
         { name: 'TELEMETRY_MAVLINK',    groups: ['telemetry'], sharableWith: ['msp'], notSharableWith: ['peripherals'], maxPorts: 1 },
         { name: 'TELEMETRY_PI',         groups: ['telemetry'], sharableWith: ['msp'], notSharableWith: ['peripherals'], maxPorts: 1 },
+        { name: 'HIL',                  groups: ['telemetry'], sharableWith: ['msp'], notSharableWith: ['peripherals'], maxPorts: 1 },
         { name: 'IRC_TRAMP',            groups: ['peripherals'], maxPorts: 1 },
         { name: 'ESC_SENSOR',           groups: ['sensors'], maxPorts: 1 },
         { name: 'TBS_SMARTAUDIO',       groups: ['peripherals'], maxPorts: 1 },

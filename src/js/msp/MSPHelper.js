@@ -51,6 +51,7 @@ function MspHelper() {
     'FRSKY_OSD': 16,
     'VTX_MSP': 17,
     'TELEMETRY_PI': 18,
+    'HIL': 19,
     };
 
     self.REBOOT_TYPES = {

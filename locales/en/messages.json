@@ -1634,6 +1634,9 @@
     "portsFunction_TELEMETRY_PI": {
         "message": "PI"
     },
+    "portsFunction_HIL": {
+        "message": "HIL"
+    },
     "portsFunction_TELEMETRY_MSP": {
         "message": "MSP"
     },
