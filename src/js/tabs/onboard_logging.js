@@ -162,7 +162,7 @@ onboard_logging.initialize = function (callback) {
                     } else {
                         buffer.push(mspHelper.REBOOT_TYPES.MSC);
                     }
-                    MSP.send_message(MSPCodes.MSP_SET_REBOOT, buffer, false);
+                    MSP.send_message(MSPCodes.MSP_SET_REBOOT, buffer, false); // stuff happening here
                 });
             }
 
@@ -370,6 +370,7 @@ onboard_logging.initialize = function (callback) {
                 { text: "INDI" },
                 { text: "Position"},
                 { text: "EKF"},
+                { text: "Learner"},
             ];
 
             let fieldsMask = FC.BLACKBOX.blackboxDisabledMask;

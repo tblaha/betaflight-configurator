@@ -124,6 +124,7 @@ const FC = {
     GPS_CONFIG: null,
     GPS_DATA: null,
     GPS_RESCUE: null,
+    INDI_CONFIG: null,
     LED_COLORS: null,
     LED_MODE_COLORS: null,
     LED_STRIP: null,
@@ -532,6 +533,32 @@ const FC = {
             tpaBreakpoint:              0,
         };
         this.ADVANCED_TUNING_ACTIVE = { ...this.ADVANCED_TUNING };
+
+        this.INDI_CONFIG = {
+            attGains: [0,0,0],
+            rateGains: [0,0,0],
+            maxNegativeSpfZ: 0,
+            maxBankDegreeManual: 0,
+            maxBankDegreeAuto: 0,
+            omegaHover: 0,
+            actTimeConstants: [0,0,0,0,0,0,0,0],
+            kThrust: [0,0,0,0,0,0,0,0],
+            Tmax: [0,0,0,0,0,0,0,0],
+            wlsEnable: false,
+            wlsAlgorithmChoice: 0,
+            wlsUsewarmstart: false,
+            wlsMaxIter: 0,
+            wlsCondBound: 0,
+            wlsTheta: 0,
+            wlsWv2: [0,0,0,0,0,0],
+            wlsWu2: [0,0,0,0,0,0],
+            uPref: [0,0,0,0,0,0,0,0],
+            
+            useIncrement: false,
+            useOmegaFeedback: false,
+            useOmegaDotFeedback: false,
+            useConstantG2: false,
+        };
 
         this.SENSOR_CONFIG = {
             acc_hardware:               0,

@@ -186,6 +186,7 @@ const MSPCodes = {
     // MSPv2 Common
     MSP2_COMMON_SERIAL_CONFIG:      0x1009,
     MSP2_COMMON_SET_SERIAL_CONFIG:  0x100A,
+    MSP2_SENSOR_GPS:                0x1F03,
 
     // MSPv2 Betaflight specific
     MSP2_BETAFLIGHT_BIND:           0x3000,
@@ -196,6 +197,15 @@ const MSPCodes = {
     MSP2_GET_OSD_WARNINGS:          0x3005,
     MSP2_GET_TEXT:                  0x3006,
     MSP2_SET_TEXT:                  0x3007,
+
+    // MSPv2 Indiflight specific
+    MSP2_INDI_CONFIG:               0x4000,
+    MSP2_SET_INDI_CONFIG:           0x4001,
+    MSP2_INDI_PROFILE:              0x4002,
+    MSP2_SET_INDI_PROFILE:          0x4003,
+    MSP2_LEARNING_CONFIG:           0x4004,
+    MSP2_SET_LEARNING_CONFIG:       0x4005,
+    MSP2_SET_POSITION_SETPOINT:     0x4006,
 
     // MSP2_GET_TEXT and MSP2_SET_TEXT variable types
     PILOT_NAME:                     1,

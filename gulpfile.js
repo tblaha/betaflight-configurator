@@ -39,7 +39,7 @@ const RELEASE_DIR = './release/';
 const CORDOVA_DIR = './cordova/';
 const CORDOVA_DIST_DIR = './dist_cordova/';
 
-const LINUX_INSTALL_DIR = '/opt/betaflight';
+const LINUX_INSTALL_DIR = '/opt/indiflight';
 
 const NODE_ENV = process.env.NODE_ENV || 'production';
 
