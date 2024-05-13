@@ -45,9 +45,9 @@ gps.initialize = async function (callback) {
 
     const hasMag = have_sensor(FC.CONFIG.activeSensors, 'mag');
 
-    var HOME_LAT = 51.99071002805145;
-    var HOME_LON = 4.376727452462819;
-    var RE = 6378137.;
+    const HOME_LAT = 51.99071002805145;
+    const HOME_LON = 4.376727452462819;
+    const RE = 6378137.;
 
     pos_set.time_ms = 0;
     pos_set.mode = 0; // 0: pos control, 1: trajectory start point, 2: trajectory run
@@ -59,12 +59,12 @@ gps.initialize = async function (callback) {
 
     if (gps.MSPrelay == false) {
         chrome.sockets.udp.create({}, function(socketInfo) {
-            var socketId = socketInfo.socketId;
+            let socketId = socketInfo.socketId;
 
             // Bind the socket to a local address and port
             chrome.sockets.udp.bind(socketId, "127.0.0.1", 5769, function(result) {
                 if (result < 0) {
-                    console.log("Error binding socket: " + result);
+                    console.log("Error binding socket: ");
                     gps.MSPrelay = false;
                     return;
                 }
@@ -74,28 +74,29 @@ gps.initialize = async function (callback) {
 
             // Listen for incoming packets
             chrome.sockets.udp.onReceive.addListener(function(info) {
-                var data = new Uint8Array(info.data);
+                let data = new Uint8Array(info.data);
                 //var message = String.fromCharCode.apply(null, data);
                 //console.log("Received message: " + message);
 
                 // Assuming each data type has fixed byte sizes
-                var id = new Uint32Array(data.buffer, 0, 1)[0];
-                var arr = new Uint32Array(data.buffer, 4, 2);
-                var timeUs1 = ((BigInt)(arr[1]) << 32n) + (BigInt)(arr[0]);
-                var timeMs1 = (Number)(timeUs1 / 1000n);
+                let id = new Uint32Array(data.buffer, 0, 1)[0];
+                let arr = new Uint32Array(data.buffer, 4, 2);
+                /* global BigInt */
+                let timeUs1 = ((BigInt)(arr[1]) << 32n) + (BigInt)(arr[0]);
+                let timeMs1 = (Number)(timeUs1 / 1000n);
 
-                var x = new Float32Array(data.buffer, 12, 1)[0];
-                var y = new Float32Array(data.buffer, 16, 1)[0];
-                var z = new Float32Array(data.buffer, 20, 1)[0];
-                var qx = new Float32Array(data.buffer, 24, 1)[0];
-                var qy = new Float32Array(data.buffer, 28, 1)[0];
-                var qz = new Float32Array(data.buffer, 32, 1)[0];
-                var qw = new Float32Array(data.buffer, 36, 1)[0];
+                let x = new Float32Array(data.buffer, 12, 1)[0];
+                let y = new Float32Array(data.buffer, 16, 1)[0];
+                let z = new Float32Array(data.buffer, 20, 1)[0];
+                let qx = new Float32Array(data.buffer, 24, 1)[0];
+                let qy = new Float32Array(data.buffer, 28, 1)[0];
+                let qz = new Float32Array(data.buffer, 32, 1)[0];
+                let qw = new Float32Array(data.buffer, 36, 1)[0];
                 //var arr = new Uint32Array(data.buffer, 40, 2);
                 //var timeUs2 = new BigUint64Array(arr.buffer, 0, 1)[0];
-                var vx = new Float32Array(data.buffer, 48, 1)[0];
-                var vy = new Float32Array(data.buffer, 52, 1)[0];
-                var vz = new Float32Array(data.buffer, 56, 1)[0];
+                let vx = new Float32Array(data.buffer, 48, 1)[0];
+                let vy = new Float32Array(data.buffer, 52, 1)[0];
+                let vz = new Float32Array(data.buffer, 56, 1)[0];
                 //var wx = new Float32Array(data.buffer, 60, 1)[0];
                 //var wy = new Float32Array(data.buffer, 64, 1)[0];
                 //var wz = new Float32Array(data.buffer, 68, 1)[0];
@@ -110,7 +111,7 @@ gps.initialize = async function (callback) {
                 gps.yaw = 180. / 3.1415 * Math.atan2( 2. * (qw*qz + qx*qy), 1. - 2. * (qy*qy+qz*qz) );
                 gps.groundCourse = 180. / 3.1415 * Math.atan2(vx, vy);
 
-                MSP.send_message(MSPCodes.MSP2_SENSOR_GPS, 
+                MSP.send_message(MSPCodes.MSP2_SENSOR_GPS,
                     mspHelper.crunch(MSPCodes.MSP2_SENSOR_GPS), false, false, false);
                 //MSP.send_message(MSPCodes.MSP2_SET_POSITION_SETPOINT,
                 //    mspHelper.crunch(MSPCodes.MSP2_SET_POSITION_SETPOINT), false, false, false);
@@ -118,7 +119,7 @@ gps.initialize = async function (callback) {
 
             // Error listener
             chrome.sockets.udp.onReceiveError.addListener(function(error) {
-                console.log("Error receiving data: " + error.resultCode);
+                console.log("Error receiving data: ");
                 gps.MSPrelay = false;
             });
         });
@@ -303,17 +304,17 @@ gps.initialize = async function (callback) {
             pos_set.mode = mode;
             pos_set.vtraj = $('input[name="pos_set_vtraj"]').val();
             pos_set.yaw = $('input[name="pos_set_yaw"]').val();
-            MSP.send_message(MSPCodes.MSP2_SET_POSITION_SETPOINT, 
+            MSP.send_message(MSPCodes.MSP2_SET_POSITION_SETPOINT,
                 mspHelper.crunch(MSPCodes.MSP2_SET_POSITION_SETPOINT), false, false, false);
         }
 
-        $('input[name="pos_set_vtraj"]').on('change', function() { sendSetpoint(2); })
-        $('a.sendSetpoint').on('click', function() { sendSetpoint(0); })
-        $('a.traj_start').on('click', function() { sendSetpoint(1); })
-        $('a.traj_pause').on('click', function() { 
+        $('input[name="pos_set_vtraj"]').on('change', function() { sendSetpoint(2); });
+        $('a.sendSetpoint').on('click', function() { sendSetpoint(0); });
+        $('a.traj_start').on('click', function() { sendSetpoint(1); });
+        $('a.traj_pause').on('click', function() {
             $('input[name="pos_set_vtraj"]').val(0);
             sendSetpoint(2);
-        })
+        });
 
         function update_ui() {
             const lat = FC.GPS_DATA.lat / 10000000;
@@ -523,5 +524,5 @@ gps.cleanup = function (callback) {
 
 TABS.gps = gps;
 export {
-    gps, pos_set
+    gps, pos_set,
 };

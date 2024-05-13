@@ -553,7 +553,6 @@ const FC = {
             wlsWv2: [0,0,0,0,0,0],
             wlsWu2: [0,0,0,0,0,0],
             uPref: [0,0,0,0,0,0,0,0],
-            
             useIncrement: false,
             useOmegaFeedback: false,
             useOmegaDotFeedback: false,
