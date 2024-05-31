@@ -480,7 +480,7 @@ setup.initModel = function () {
 };
 
 setup.renderModel = function () {
-    const x = (FC.SENSOR_DATA.kinematics[1] * -1.0) * 0.017453292519943295,
+    const x = (FC.SENSOR_DATA.kinematics[1] * 1.0) * 0.017453292519943295,
         y = ((FC.SENSOR_DATA.kinematics[2] * -1.0) - this.yaw_fix) * 0.017453292519943295,
         z = (FC.SENSOR_DATA.kinematics[0] * -1.0) * 0.017453292519943295;
 
