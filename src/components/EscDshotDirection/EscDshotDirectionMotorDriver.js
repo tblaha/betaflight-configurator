@@ -145,13 +145,15 @@ class EscDshotDirectionMotorDriver
 
     _sendState()
     {
-        const buffer = [];
+        if (this._numberOfMotors) {
+            const buffer = [];
 
-        for (let  i = 0; i < this._numberOfMotors; i++) {
-            buffer.push16(this._state[i]);
+            for (let  i = 0; i < this._numberOfMotors; i++) {
+                buffer.push16(this._state[i]);
+            }
+
+            this._EscDshotCommandQueue.pushCommand(MSPCodes.MSP_SET_MOTOR, buffer);
         }
-
-        this._EscDshotCommandQueue.pushCommand(MSPCodes.MSP_SET_MOTOR, buffer);
     }
 
 }
