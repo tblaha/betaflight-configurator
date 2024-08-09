@@ -237,6 +237,10 @@ setup.initialize = function (callback) {
                 // 'DSHOT_BITBANG',   only from API 1.42
                 // 'ACC_CALIBRATION', only from API 1.43
                 // 'MOTOR_PROTOCOL',  only from API 1.43
+                // 'WAITING_FOR_THROW',         only from API ???
+                // 'THROW_NOT_READY',         only from API ???
+                // 'CATAPULT_NOT_READY',         only from API ???
+                // 'NN_MODE',         only from API ???
                 // 'ARM_SWITCH',           // Needs to be the last element, since it's always activated if one of the others is active when arming
             ];
 
@@ -247,7 +251,12 @@ setup.initialize = function (callback) {
             }
 
             if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_43)) {
-                disarmFlagElements = disarmFlagElements.concat(['ACC_CALIBRATION', 'MOTOR_PROTOCOL']);
+                disarmFlagElements = disarmFlagElements.concat(['ACC_CALIBRATION',
+                                                                'MOTOR_PROTOCOL',
+                                                                'WAITING_FOR_THROW',
+                                                                'THROW_NOT_READY',
+                                                                'CATAPULT_NOT_READY',
+                                                                'NN_MODE']);
             }
 
             // Always the latest element
