@@ -8,34 +8,8 @@ import MSPCodes from "../msp/MSPCodes";
 import { have_sensor } from "../sensor_helpers";
 import { mspHelper } from '../msp/MSPHelper';
 import { updateTabList } from '../utils/updateTabList';
-//import { checkChromeRuntimeError } from "./utils/common";
 
-const gps = {
-    time_ms: 0,
-    lat: 0,
-    lon: 0,
-    alt: 0,
-    vn: 0,
-    ve: 0,
-    vd: 0,
-    yaw: 0,
-    groundCourse: 0,
-    MSPrelay: false,
-};
-
-const pos_set = {
-    time_ms: 0,
-    mode: 0,
-    x: 0,
-    y: 0,
-    z: -1.5,
-    lat: 0,
-    lon: 0,
-    alt: 0,
-    yaw: 0,
-    vtraj: 0,
-};
-
+const gps = {};
 gps.initialize = async function (callback) {
 
     GUI.active_tab = 'gps';
@@ -44,86 +18,6 @@ gps.initialize = async function (callback) {
     await MSP.promise(MSPCodes.MSP_GPS_CONFIG);
 
     const hasMag = have_sensor(FC.CONFIG.activeSensors, 'mag');
-
-    const HOME_LAT = 51.99071002805145;
-    const HOME_LON = 4.376727452462819;
-    const RE = 6378137.;
-
-    pos_set.time_ms = 0;
-    pos_set.mode = 0; // 0: pos control, 1: trajectory start point, 2: trajectory run
-    pos_set.lat = HOME_LAT + 180. / 3.1415 * (pos_set.x / RE);
-    pos_set.lon = HOME_LON + 180. / 3.1415 * (pos_set.y / RE) / Math.cos(HOME_LON * 3.1415/180.);
-    //pos_set.alt = pos_set.alt;
-    pos_set.yaw = 0;
-    pos_set.vtraj = 0; // if mode == 2: speed of the trajectory
-
-    if (gps.MSPrelay == false) {
-        chrome.sockets.udp.create({}, function(socketInfo) {
-            let socketId = socketInfo.socketId;
-
-            // Bind the socket to a local address and port
-            chrome.sockets.udp.bind(socketId, "127.0.0.1", 5769, function(result) {
-                if (result < 0) {
-                    console.log("Error binding socket: ");
-                    gps.MSPrelay = false;
-                    return;
-                }
-                gps.MSPrelay = true;
-                console.log("Socket bound");
-            });
-
-            // Listen for incoming packets
-            chrome.sockets.udp.onReceive.addListener(function(info) {
-                let data = new Uint8Array(info.data);
-                //var message = String.fromCharCode.apply(null, data);
-                //console.log("Received message: " + message);
-
-                // Assuming each data type has fixed byte sizes
-                let id = new Uint32Array(data.buffer, 0, 1)[0];
-                let arr = new Uint32Array(data.buffer, 4, 2);
-                /* global BigInt */
-                let timeUs1 = ((BigInt)(arr[1]) << 32n) + (BigInt)(arr[0]);
-                let timeMs1 = (Number)(timeUs1 / 1000n);
-
-                let x = new Float32Array(data.buffer, 12, 1)[0];
-                let y = new Float32Array(data.buffer, 16, 1)[0];
-                let z = new Float32Array(data.buffer, 20, 1)[0];
-                let qx = new Float32Array(data.buffer, 24, 1)[0];
-                let qy = new Float32Array(data.buffer, 28, 1)[0];
-                let qz = new Float32Array(data.buffer, 32, 1)[0];
-                let qw = new Float32Array(data.buffer, 36, 1)[0];
-                //var arr = new Uint32Array(data.buffer, 40, 2);
-                //var timeUs2 = new BigUint64Array(arr.buffer, 0, 1)[0];
-                let vx = new Float32Array(data.buffer, 48, 1)[0];
-                let vy = new Float32Array(data.buffer, 52, 1)[0];
-                let vz = new Float32Array(data.buffer, 56, 1)[0];
-                //var wx = new Float32Array(data.buffer, 60, 1)[0];
-                //var wy = new Float32Array(data.buffer, 64, 1)[0];
-                //var wz = new Float32Array(data.buffer, 68, 1)[0];
-
-                gps.time_ms = timeMs1;
-                gps.lat = HOME_LAT + 180. / 3.1415 * (x / RE);
-                gps.lon = HOME_LON + 180. / 3.1415 * (y / RE) / Math.cos(HOME_LON * 3.1415/180.);
-                gps.alt = -z;
-                gps.vn = vx;
-                gps.ve = vy;
-                gps.vd = vz;
-                gps.yaw = 180. / 3.1415 * Math.atan2( 2. * (qw*qz + qx*qy), 1. - 2. * (qy*qy+qz*qz) );
-                gps.groundCourse = 180. / 3.1415 * Math.atan2(vx, vy);
-
-                MSP.send_message(MSPCodes.MSP2_SENSOR_GPS,
-                    mspHelper.crunch(MSPCodes.MSP2_SENSOR_GPS), false, false, false);
-                //MSP.send_message(MSPCodes.MSP2_SET_POSITION_SETPOINT,
-                //    mspHelper.crunch(MSPCodes.MSP2_SET_POSITION_SETPOINT), false, false, false);
-            });
-
-            // Error listener
-            chrome.sockets.udp.onReceiveError.addListener(function(error) {
-                console.log("Error receiving data: ");
-                gps.MSPrelay = false;
-            });
-        });
-    }
 
     load_html();
 
@@ -282,40 +176,40 @@ gps.initialize = async function (callback) {
 
         // End GPS Configuration
 
-        // Setpoint configuration
-        const setpointModes = [
-            "position",
-            "trajectory",
-        ];
-
-        const setpointModeElement = $('select.pos_set_mode');
-        for (const mode of setpointModes) {
-            setpointModeElement.append(`<option value="${mode}">${mode}</option>`);
-        }
-        console.log("setup done");
-
-        function sendSetpoint(mode) {
-            pos_set.time_ms = gps.time_ms;
-            pos_set.x = $('input[name="pos_set_x"]').val();
-            pos_set.y = $('input[name="pos_set_y"]').val();
-            pos_set.lat = HOME_LAT + 180. / 3.1415 * (pos_set.x / RE);
-            pos_set.lon = HOME_LON + 180. / 3.1415 * (pos_set.y / RE) / Math.cos(HOME_LON * 3.1415/180.);
-            pos_set.z = $('input[name="pos_set_z"]').val();
-            pos_set.mode = mode;
-            pos_set.vtraj = $('input[name="pos_set_vtraj"]').val();
-            pos_set.yaw = $('input[name="pos_set_yaw"]').val();
-            MSP.send_message(MSPCodes.MSP2_SET_POSITION_SETPOINT,
-                mspHelper.crunch(MSPCodes.MSP2_SET_POSITION_SETPOINT), false, false, false);
-        }
-
-        $('input[name="pos_set_vtraj"]').on('change', function() { sendSetpoint(2); });
-        $('a.sendSetpoint').on('click', function() { sendSetpoint(0); });
-        $('a.traj_start').on('click', function() { sendSetpoint(1); });
-        $('a.traj_pause').on('click', function() {
-            $('input[name="pos_set_vtraj"]').val(0);
-            sendSetpoint(2);
-        });
-
+//        // Setpoint configuration
+//        const setpointModes = [
+//            "position",
+//            "trajectory",
+//        ];
+//
+//        const setpointModeElement = $('select.pos_set_mode');
+//        for (const mode of setpointModes) {
+//            setpointModeElement.append(`<option value="${mode}">${mode}</option>`);
+//        }
+//        console.log("setup done");
+//
+//        function sendSetpoint(mode) {
+//            pos_set.time_ms = gps.time_ms;
+//            pos_set.x = $('input[name="pos_set_x"]').val();
+//            pos_set.y = $('input[name="pos_set_y"]').val();
+//            pos_set.lat = HOME_LAT + 180. / 3.1415 * (pos_set.x / RE);
+//            pos_set.lon = HOME_LON + 180. / 3.1415 * (pos_set.y / RE) / Math.cos(HOME_LON * 3.1415/180.);
+//            pos_set.z = $('input[name="pos_set_z"]').val();
+//            pos_set.mode = mode;
+//            pos_set.vtraj = $('input[name="pos_set_vtraj"]').val();
+//            pos_set.yaw = $('input[name="pos_set_yaw"]').val();
+//            MSP.send_message(MSPCodes.MSP2_SET_POSITION_SETPOINT,
+//                mspHelper.crunch(MSPCodes.MSP2_SET_POSITION_SETPOINT), false, false, false);
+//        }
+//
+//        $('input[name="pos_set_vtraj"]').on('change', function() { sendSetpoint(2); });
+//        $('a.sendSetpoint').on('click', function() { sendSetpoint(0); });
+//        $('a.traj_start').on('click', function() { sendSetpoint(1); });
+//        $('a.traj_pause').on('click', function() {
+//            $('input[name="pos_set_vtraj"]').val(0);
+//            sendSetpoint(2);
+//        });
+//
         function update_ui() {
             const lat = FC.GPS_DATA.lat / 10000000;
             const lon = FC.GPS_DATA.lon / 10000000;
@@ -524,5 +418,5 @@ gps.cleanup = function (callback) {
 
 TABS.gps = gps;
 export {
-    gps, pos_set,
+    gps,
 };

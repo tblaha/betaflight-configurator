@@ -489,7 +489,7 @@ async function processBuildConfiguration() {
     await MSP.promise(MSPCodes.MSP2_GET_TEXT, mspHelper.crunch(MSPCodes.MSP2_GET_TEXT, MSPCodes.BUILD_KEY));
 
     if (FC.CONFIG.buildKey.length === 32 && navigator.onLine) {
-        gui_log(i18n.getMessage('buildKey', FC.CONFIG.buildKey));
+        //gui_log(i18n.getMessage('buildKey', FC.CONFIG.buildKey));
         buildApi.requestBuildOptions(FC.CONFIG.buildKey, onLoadCloudBuild, processCraftName);
     } else {
         processCraftName();

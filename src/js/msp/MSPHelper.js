@@ -17,7 +17,7 @@ import { showErrorDialog } from "../utils/showErrorDialog";
 import GUI, { TABS } from "../gui";
 import { OSD } from "../tabs/osd";
 import { reinitializeConnection } from "../serial_backend";
-import { gps, pos_set } from "../tabs/gps";
+//import { gps, pos_set } from "../tabs/gps";
 
 // Used for LED_STRIP
 const ledDirectionLetters    = ['n', 'e', 's', 'w', 'u', 'd'];      // in LSB bit order
@@ -780,6 +780,13 @@ MspHelper.prototype.process_data = function(dataHandler) {
                 for (let i = 0; i < timeLength; i++) {
                     buff.push(data.readU8());
                 }
+                buff.push(32); // ascii space
+
+                const gitRevisionLength = 15;
+                for (let i = 0; i < gitRevisionLength; i++) {
+                    buff.push(data.readU8());
+                }
+
                 FC.CONFIG.buildInfo = String.fromCharCode.apply(null, buff);
                 break;
 
@@ -2247,33 +2254,33 @@ MspHelper.prototype.crunch = function(code, modifierCode = undefined) {
             buffer.push8(1);
             break;
 
-        case MSPCodes.MSP2_SENSOR_GPS:
-            buffer.push8(0);   // instance
-            buffer.push16(0);  // gps week
-            buffer.push32(gps.time_ms);  // ms_tow
-            buffer.push8(1);   // fix_type
-            buffer.push8(20);  // num sats
-            buffer.push16(1);  // horizontal pos accuracy in cm
-            buffer.push16(1);  // vertical pos accuracy in cm
-            buffer.push16(1);  // horizontal vel accuracy in cm/s
-            buffer.push16(150);  // dilusion of precision * 100
-            //buffer.push32(40_000_000);  // longitude deg * 1e7
-            //buffer.push32(520_000_000);  // latitude deg * 1e7
-            buffer.push32(gps.lon*1e7);  // longitude deg * 1e7
-            buffer.push32(gps.lat*1e7);  // latitude deg * 1e7
-            buffer.push32(gps.alt*100); // altitude in cm
-            buffer.push32(gps.vn*100);   // ned vel north cm/s
-            buffer.push32(gps.ve*100);   // ned vel east cm/s
-            buffer.push32(gps.vd*100);   // ned vel down, unused
-            buffer.push16(0);   // ground course, deg*10
-            buffer.push16(gps.yaw*10);   // true yaw, deg*10, unused
-            buffer.push16(0);   // year
-            buffer.push8(0);   // month
-            buffer.push8(0);   // day
-            buffer.push8(0);   // hour
-            buffer.push8(0);   // min
-            buffer.push8(0);   // sec
-            break;
+//        case MSPCodes.MSP2_SENSOR_GPS:
+//            buffer.push8(0);   // instance
+//            buffer.push16(0);  // gps week
+//            buffer.push32(gps.time_ms);  // ms_tow
+//            buffer.push8(1);   // fix_type
+//            buffer.push8(20);  // num sats
+//            buffer.push16(1);  // horizontal pos accuracy in cm
+//            buffer.push16(1);  // vertical pos accuracy in cm
+//            buffer.push16(1);  // horizontal vel accuracy in cm/s
+//            buffer.push16(150);  // dilusion of precision * 100
+//            //buffer.push32(40_000_000);  // longitude deg * 1e7
+//            //buffer.push32(520_000_000);  // latitude deg * 1e7
+//            buffer.push32(gps.lon*1e7);  // longitude deg * 1e7
+//            buffer.push32(gps.lat*1e7);  // latitude deg * 1e7
+//            buffer.push32(gps.alt*100); // altitude in cm
+//            buffer.push32(gps.vn*100);   // ned vel north cm/s
+//            buffer.push32(gps.ve*100);   // ned vel east cm/s
+//            buffer.push32(gps.vd*100);   // ned vel down, unused
+//            buffer.push16(0);   // ground course, deg*10
+//            buffer.push16(gps.yaw*10);   // true yaw, deg*10, unused
+//            buffer.push16(0);   // year
+//            buffer.push8(0);   // month
+//            buffer.push8(0);   // day
+//            buffer.push8(0);   // hour
+//            buffer.push8(0);   // min
+//            buffer.push8(0);   // sec
+//            break;
 
         case MSPCodes.MSP2_SET_INDI_CONFIG:
             break;
@@ -2285,15 +2292,15 @@ MspHelper.prototype.crunch = function(code, modifierCode = undefined) {
         case MSPCodes.MSP2_SET_LEARNING_CONFIG:
             break;
 
-        case MSPCodes.MSP2_SET_POSITION_SETPOINT:
-            buffer.push32(pos_set.time_ms);
-            buffer.push8(pos_set.mode);
-            buffer.push32(1000*pos_set.x);
-            buffer.push32(1000*pos_set.y);
-            buffer.push32(1000*pos_set.z);
-            buffer.push16(10*pos_set.yaw);
-            buffer.push32(100*pos_set.vtraj);
-            break;
+//        case MSPCodes.MSP2_SET_POSITION_SETPOINT:
+//            buffer.push32(pos_set.time_ms);
+//            buffer.push8(pos_set.mode);
+//            buffer.push32(1000*pos_set.x);
+//            buffer.push32(1000*pos_set.y);
+//            buffer.push32(1000*pos_set.z);
+//            buffer.push16(10*pos_set.yaw);
+//            buffer.push32(100*pos_set.vtraj);
+//            break;
 
         case MSPCodes.MSP_SET_SIMPLIFIED_TUNING:
             MspHelper.writePidSliderSettings(buffer);
