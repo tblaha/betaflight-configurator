@@ -51,13 +51,13 @@ jobs:
             os: ubuntu-22.04
             releaseArgs: --linux64
 
-          - name: macOS
-            os: macos-11
-            releaseArgs: --osx64
+#          - name: macOS
+#            os: macos-11
+#            releaseArgs: --osx64
 
-          - name: Windows
-            os: windows-2022
-            releaseArgs: --win64
+#          - name: Windows
+#            os: windows-2022
+#            releaseArgs: --win64
     steps:
       - uses: actions/checkout@v3
 
